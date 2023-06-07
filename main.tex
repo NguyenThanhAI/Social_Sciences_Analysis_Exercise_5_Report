@@ -1,0 +1,293 @@
+\documentclass[14pt, a4paper]{article}
+\usepackage{minitoc}
+\usepackage[left=3.00cm, right=2.5cm, top=2.00cm, bottom=2.00cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{graphicx}
+%\usepackage{algpseudocode}
+%\usepackage{algorithm}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage{blindtext}
+\usepackage{setspace}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{vietnam}
+\usepackage[center]{caption}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fancyhdr} % header, footer
+\usepackage{hyperref} % loại bỏ border với mục lục và công thức
+\usepackage[nonumberlist, nopostdot, nogroupskip]{glossaries}
+\usepackage{glossary-superragged}
+\usepackage{tikz,tkz-tab}
+\usepackage{pythonhighlight}
+\setglossarystyle{superraggedheaderborder}
+\pagestyle{fancy}
+%\usepackage[style=numeric,sortcites]{biblatex}
+%\addbibresource{ref.bib}
+%\usepackage[numbers]{natbib}
+\usepackage{indentfirst}
+\usepackage[natbib,backend=biber,style=ieee, sorting=ynt]{biblatex}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\bibliography{ref.bib}
+
+\graphicspath{{./figures/}}
+
+\fancyhf{}
+%\rhead{\textbf{Môn học: Các phương pháp thống kê hiện đại trong nghiên cứu Xã hội học}}
+\lhead{\textbf{GVHD: TS. Trịnh Quốc Anh}}
+\rfoot{\thepage}
+\lfoot{\textbf{Học viên thực hiện: Nguyễn Chí Thanh - 21007925}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+%
+%\numberwithin{equation}{section}
+%\numberwithin{algorithm}{section}
+%\numberwithin{figure}{section}
+%
+%\setlength{\parindent}{0.5cm}
+%
+%\setcounter{secnumdepth}{3} % Cho phép subsubsection trong report
+%\setcounter{tocdepth}{3} % Chèn subsubsection vào bảng mục lục
+
+%\newtheorem{dl}{Định lý}
+%\newtheorem{md}{Mệnh đề}
+%\newtheorem{bd}{Bổ đề}
+%\newtheorem{dn}{Định nghĩa}
+%\newtheorem{hq}{Hệ quả}
+
+%\newtheorem{baitap}{Bài tập}
+%\newtheorem*{loigiai}{Lời giải}
+
+%\numberwithin{dl}{section}
+%\numberwithin{md}{section}
+%\numberwithin{bd}{section}
+%\numberwithin{dn}{section}
+%\numberwithin{hq}{section}
+
+\setlength{\parindent}{0cm}
+
+\newtheorem{dl}{Định lý}
+\newtheoremstyle{sltheorem}
+{}                % Space above
+{}                % Space below
+{\normalfont}        % Theorem body font % (default is "\upshape")
+{}                % Indent amount
+{\bfseries}       % Theorem head font % (default is \mdseries)
+{.}               % Punctuation after theorem head % default: no punctuation
+{ }               % Space after theorem head
+{}                % Theorem head spec
+\theoremstyle{sltheorem}
+\newtheorem{baitap}{Bài tập}
+\newtheoremstyle{soltheorem}
+{}                % Space above
+{}                % Space below
+{\normalfont}        % Theorem body font % (default is "\upshape")
+{}                % Indent amount
+{\bfseries}       % Theorem head font % (default is \mdseries)
+{.}               % Punctuation after theorem head % default: no punctuation
+{\newline}               % Space after theorem head
+{}                % Theorem head spec
+\theoremstyle{soltheorem}
+\newtheorem*{loigiai}{Lời giải}
+
+\onehalfspacing
+
+\begin{document}
+\begin{titlepage}
+
+    \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+    \center % Center everything on the page
+
+    %----------------------------------------------------------------------------------------
+    %	HEADING SECTIONS
+    %----------------------------------------------------------------------------------------
+    \textsc{\LARGE Đại học Quốc Gia Hà Nội}\\[0.5cm]
+    \textsc{\LARGE Trường đại học Khoa học tự nhiên}\\[0.5cm] % Name of your university/college
+    \textsc{\LARGE Khoa Toán - Cơ - Tin học}\\[0.5cm]
+
+    \includegraphics[scale=0.2]{HUS-logo.jpg}\\[0.5cm]
+
+    \textsc{\Large Chuyên ngành: Khoa học dữ liệu}\\[0.5cm] % Major heading such as course name
+
+
+    %----------------------------------------------------------------------------------------
+    %	TITLE SECTION
+    %----------------------------------------------------------------------------------------
+
+    \HRule \\[0.4cm]
+    { \huge \bfseries Bài tập môn học}\\[0.4cm] % Title of your document
+    \HRule \\[1.5cm]
+
+    \textsc{\Large Môn học: Các phương pháp thống kê hiện đại \\ trong nghiên cứu Xã hội học}\\[1cm] % Minor heading such as course title
+
+
+    \textsc{\Large Bài tập số 4}\\[1cm]
+
+
+    %----------------------------------------------------------------------------------------
+    %	AUTHOR SECTION
+    %----------------------------------------------------------------------------------------
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushleft} \large
+        \emph{Giảng viên hướng dẫn:} \\
+        TS. Trịnh Quốc Anh % Supervisor's Name
+        \end{flushleft}
+    \end{minipage}\\[0.5cm]
+
+    \begin{minipage}{0.4\textwidth}
+    \begin{flushleft} \large
+    \emph{Học viên thực hiện:}\\
+    Nguyễn Chí Thanh \\
+    MSHV: 21007925 \\ % Your name
+    Lớp: Khoa học dữ liệu - K4
+    \end{flushleft}
+    \end{minipage}
+
+
+    % If you don't want a supervisor, uncomment the two lines below and remove the section above
+    %\Large \emph{Author:}\\
+    %John \textsc{Smith}\\[3cm] % Your name
+
+    %----------------------------------------------------------------------------------------
+    %	DATE SECTION
+    %----------------------------------------------------------------------------------------
+
+    % I don't want day because it is English
+    % {\large \today}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+    %----------------------------------------------------------------------------------------
+    %	LOGO SECTION
+    %----------------------------------------------------------------------------------------
+
+    %\includegraphics{logo/rsz_3logo-khtn.png}\\[1cm] % Include a department/university logo - this will require the graphicx package
+
+    %----------------------------------------------------------------------------------------
+
+    \vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+
+\nocite{*}
+
+\newpage
+\begin{baitap}
+    Hãy tóm tắt nghiên cứu "Voting behavior".
+    Từ dữ liệu bỏ phiếu, hãy đưa ra các hành vi của người đi bỏ phiếu
+\end{baitap}
+
+\begin{loigiai}
+    \begin{enumerate}
+        \item Tóm tắt nghiên cứu "Voting behavior":
+        \textbf{Giới thiệu:}
+        Ở Stockton, California cuộc bầu 4 tháng 11 năm 1986, các cử tri biểu quyết dự luật C bãi bỏ hệ thống bầu cử cũ của quận cho hội đồng thành phố và thị trưởng, thay thế bằng hệ thống bầu cử hai giai đoạn bao gồm bầu cử sơ bộ ở các quận tiếp theo đó là cuộc bầu cử toàn thành phố.
+        Sau hơn hai năm tranh luận, sáu cư dân của Stockton đã đệ đơn kiện thành phố.
+        Họ cho rằng dự luật C làm giảm khả năng của các công dân người gốc Tây Ban Nha và người da đen trong việc bầu cử các đại biểu họ chọn vào hội đồng thành phố.
+        Người gốc Tây Ban Nha chiếm khoảng 20 \% dân số Stockton và nếu một cử viên được người gốc Tây Ban Nha thích thường khác với những ứng cử viên mà người da trắng thích thì trong một cuộc bầu cử trên cấp toàn thành phố ứng cử viên được chọn bởi đa số người gốc Tây Ban Nha rất khó thắng cử.
+
+        Bên nguyên đơn đã tuyên bố rằng dự luật C đã vi phạm mục 2 của Đạo luật về quyền bầu cử, nghiêm cấm mọi hành vi thậm chí không cố ý, từ chối quyền bầu cử vì lý do chủng tộc hoặc màu da.
+
+        Trong các thử nghiệm về quyền bỏ phiếu, các bằng chứng thống kê thường được đưa ra để chứng minh rằng một nhóm thiểu số thường thích một ứng cử viên khác ứng cử viên mà nhóm đa số thích.
+        Ta sẽ trả lời câu hỏi về tính hợp lệ của bằng chứng thống kê thường được đưa ra trong vụ kiện này.
+
+        \textbf{Dữ liêu:}
+        Có hai tập dữ liệu.
+        Tập dữ liệu đầu tiên bao gồm kết quả bầu cử sơ bộ tổng thống của đảng Dân chủ ở Stockton, California.
+        Kết quả bầu cử được báo cáo cho từng khu vực trong số 130 khu vực bầu cử ở Stockton.
+        Ngoài số phiếu bầu cho ứng cử viên thổng thống Rev. Jesse Jackson và tổng số phiếu bầu trong cuộc bầu cử sơ bộ, dữ liệu điều tra dân số được cung cấp về số công dân trong khu vực trong độ tuổi bầu cử và tỷ lệ số người là người gốc Tây Ban Nha và người da đen trong nhóm những người thuộc độ tuổi bầu cử.
+        Thông tin điều tra dân số thu được từ dữ liệu khu vực địa lý lớn hơn khu vực.
+
+        Ta dữ liệu thứ hai là một cuộc thăm dò dư luận được thực hiện bởi Field Research Corporation, một công ty tư vấn tư nhân thực hiện thăm dò dư luận cho các cơ quan tiểu bang và liên bang.
+        Dữ liệu khảo sát được thu thập khi cử tri rời khỏi phòng phiếu.
+        Họ được yêu cầu hoàn thành một cuộc khảo sát ẩn danh cung cấp các thông tin về chủng tộc, thu nhập, trình độ học vấn và người mà họ đã bỏ phiếu.
+        Trong cuộc khảo sát, các khu vực được đánh số không khớp với số định danh với các khu vực trong tập dữ liệu đầu tiên.
+
+        Phương pháp lấy mẫu được sử dụng để chọn cử tri đưa vào cuộc thăm dò dư luận không được miêu tả ở đây.
+        Khi phân tích cuộc thăm dò dư luận, các cử tri được lấy mẫu coi là dân số từ một thành phố nhỏ.
+        Những dữ liệu này không được sử dụng để so sánh với kết quả của cuộc bầu cử toàn thành phố, vì vậy ta không cần quan tâm đến quy trình lấy mẫu.
+
+        \textbf{Luật bầu cử:}
+
+        Trước dự luật C, thành phố Stockton được chia làm 9 quận, một đại biểu từ một quận sẽ được chọn để trở thành thành viên của hội đồng thành phố.
+        Các đại biểu đã thắng cử vào hội đồng thành phố qua cuộc bầu cử cấp quận.
+        Các ứng viên cho hội đồng thành phố của quận phải cư trú tại quận và phải nhận số phiếu bầu cao nhất trong quận.
+
+        Tại thời điểm dự luật C được thông qua, ba đại biểu da đen và một đại biểu người gốc Tây Ban Nha đang trong hội đồng thành phố,
+        hai trong 3 đại biểu da đen được thắng cử từ các quận mà người da trắng chiếm đa số.
+        Vào năm 1990, cuộc bầu cử đầu tiên diễn ra khi dự luật C có hiệu lực, không có đại biểu gốc Tây Ban Nha, một đại biểu da đen và một đại biểu gốc Á (đại biểu châu Á đầu tiên của thành phố) thắng cử vào hội đồng thành phố.
+
+        Trong mục hai của Đạo luật về quyền bảo cử nghiêm cấm mọi hành vi từ chối quyền bầu cử vì chủng tộc.
+        Điều này bao gồm mọi hành vi mà các thành viên của một chủng tộc có ít cơ hội hơn các thành viên của các nhóm chủng tốc khác để bầu đại diện mà họ lựa chọn.
+
+        Tòa án tối ưu đã yêu cầu bên nguyên đơn cần chứng minh ba điều để có được quyết định có lợi:
+
+        \begin{enumerate}
+            \item Các nhóm thiểu số là đủ lớn và tập trung trong một khu vực địa lý tạo thành đa số trong một quận.
+            \item Các nhóm thiểu số có chung xu hướng chính trị.
+            \item Nhóm đa số bỏ phiếu đủ nhiều thành một nhóm khiến thường thắng các nhóm thiểu số khác.
+        \end{enumerate}
+
+        Để cấu thành điều kiện thứ nhất, ta cần chỉ ra rằng có một quận mà có ít nhất 50\% số người trong độ tuổi bầu cử thuộc vào nhóm thiểu số.
+        Hai điều kiện sau khó khơn để cấu thành.
+        Cần phải chỉ ra rằng kết quả bầu cử bị phân cực (ứng cử viên được chọn bởi nhóm thiểu số khác với ứng cử viên được chọn bởi nhóm đa số) và ứng cứ viên ưa thích của nhóm đa số nói chung thắng cuộc bầu cử.
+
+        \textbf{Nghiên cứu cuộc bầu cử:}
+
+        Ta xét kết quả cuộc thăm dò dư luận từ cuộc bỏ phiếu sơ bộ Đảng dân chủ năm 1988 tại Stockton.
+        Nếu ta xem những người tham gia khảo sát nếu họ tạo thành toàn bộ nhóm người trong độ tuổi bỏ phiếu trong một thị trấn nhỏ được gọi là "Stocktette".
+
+        Ta cần làm những việc sau:
+
+        \begin{itemize}
+            \item Tổng hợp kết quả bỏ phiếu cho Stocktette theo khu vực.
+            \item Từ tổng hợp theo cấp khu vực, ta ước lượng tỷ lệ ủng hộ cho ứng cử viên Jackson. Tỷ lệ này được định nghĩa theo công thức:
+            \begin{equation*}
+                \dfrac{\text{Số người gốc Tây Ban Nha bỏ phiếu cho ứng cử viên Jackson}}{\text{Số người gốc Tây Ban Nha bỏ phiếu trong cuộc bầu cử sơ bộ ở Stocktette}}
+            \end{equation*}
+            \item Ta xét một giả định khác, trong một khu vực, ta không quan tâm đến chủng tộc mà chỉ quan tâm đến tỷ lệ ủng hộ ông Jackson là một hàm của thu nhập.
+            Cụ thể hơn, ta cho rằng tỷ lệ cử tri trong một khu vực bỏ phiếu theo cùng một hành vi không liên quan đến chủ tộc, tỷ lệ ủng hộ ứng cử Jackson trong một khu vực với thu nhập trên 40000 \$.
+            Hay những người gốc Tây Ban Nha sống trong một khu vực ủng hộ ứng cử viên Jackson như với các nhóm chủng tộc khác trong khu vực và được xác định bởi mối quan hệ:
+
+            \begin{equation*}
+                \text{Tỷ lệ ủng hộ ứng cử viên Jackson } = c + d \times \text{ tỷ lệ cử tri có thu nhập lớn hơn 4000 \$}
+            \end{equation*}
+            \item Ta làm thế nào để so sánh hai ước lượng trên với nhau và với thực tế?
+            Liệu tỷ lệ ủng hộ thực tế nằm trong cận sai lệch trong ước lượng đầu tiên?
+            Ta chỉ cần kiểm tra kết quả với thực tế vì ta biết từng cá nhân bầu cử thế nào trong thị giấn giả định.
+            Thông thường, ta không biết từng cá nhân hay các nhóm cá nhân như người gốc Tây Ban Nha bầu cử bởi vì kết quả bỏ phiếu là bí mật.
+        \end{itemize}
+
+        \textbf{Lý thuyết:}
+
+        Mối tương quan giữa thu nhập và số năm học của cử tri trong mẫu là 0.45, những cử tri có trình độ học vấn trên mức trung bình thường có thu nhập trên mức trung bình.
+        Nhưng khi được tổng hợp theo khu vực bầu cử, mối tương quan giữa học vấn và thu nhập là 0.85
+
+        Nghiên cứu đã sử dụng nhiều mô hình cho các mối quan hệ giữa tỷ lệ bỏ phiếu và đặc tính dân cư của khu vực.
+        Nghiên cứu cũng xem xét mở rộng từ khu vực sang cá nhân.
+        Một số mô hình được sử dụng trong nghiên cứu:
+
+        \begin{itemize}
+            \item Cực tiểu hóa bình phương có trọng Số
+            \item Tỷ lệ ủng hộ cho các ứng cử viên
+        \end{itemize}
+
+        Nghiên cứu có xem xét qua ba giả định:
+
+        \begin{itemize}
+            \item Giả định chủng tộc: Mỗi người trong từng chủng tộc có xu hướng chọn cùng một ứng cử viên không liên quan đến khu vực sống.
+            \item Giả định láng giếng: Những người trong cùng một khu vực có xu hướng chọn cùng một ứng cử viên không quan tâm đến chủng tộc.
+            \item Giả định thu nhập: Những người ở cùng một mức thu nhập có xu hướng chọn cùng một ứng cử viên không quan tâm đến chủng tộc, khu vực sống
+        \end{itemize}
+
+        Với mỗi giả định, nghiên cứu ước lượng ra tỷ lệ ủng hộ các ứng viên theo từng giả định
+
+        \item Hãy đưa ra các hành vi của người đi bỏ phiếu
+    \end{enumerate}
+\end{loigiai}
+\newpage
+\printbibliography[title={TÀI LIỆU THAM KHẢO}]
+\end{document}
