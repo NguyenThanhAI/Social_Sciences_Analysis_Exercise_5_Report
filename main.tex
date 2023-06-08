@@ -31,6 +31,7 @@
 
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{float}
 
 \bibliography{ref.bib}
 
@@ -289,9 +290,9 @@
         
         Ta xét mô hình hồi quy tuyến tính:
 
-        \begin{equation*}
+        \begin{equation} \label{eq:Linear_Regression}
             y = a + bx
-        \end{equation*}
+        \end{equation}
 
         Với $a$ và $b$ được tính là:
 
@@ -302,11 +303,13 @@
             \end{aligned}
         \end{equation*}
 
-        Và hệ số tương quan:
+        Và hệ số tương quan giữa hai đại lượng $x$ và $y$:
 
         \begin{equation*}
             \sigma_{XY} = \dfrac{\dfrac{1}{N} \sum_{i=1}^N (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\dfrac{1}{N} \sum_{i=1}^N (x_i - \bar{x})^2 \dfrac{1}{N} \sum_{i=1}^N (y_i - \bar{y})^2}}
         \end{equation*}
+
+        Ta tính các hệ số của mô hình hồi quy tuyến tính và hệ số tương quan bằng đoạn code sau:
 
         \begin{python}
 def linear_coff(x: np.ndarray, y: np.ndarray, w: np.ndarray):
@@ -338,82 +341,116 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
     return weighted_corr_coef
 \end{python}
 
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.6\textwidth]{figures/primary_df.png}
         \caption{Dataframe tập dữ liệu 1}
-        \label{fig:vote_df}
+        \label{fig:primary_df}
     \end{figure}
 
-    \begin{figure}[h!]
-        \centering
-        \includegraphics[width=0.6\textwidth]{figures/Predominant_black.png}
-        \caption{Những khu vực có người da đen chiếm đa số}
-        \label{fig:Predominant_black}
-    \end{figure}
+    Hình \ref{fig:primary_df} thể hiện dataframe của tập dữ liệu 1.
 
-    \begin{figure}[h!]
-        \centering
-        \includegraphics[width=0.6\textwidth]{figures/Predominant_hispanic.png}
-        \caption{Những khu vực có người gốc Tây Ban Nha chiếm đa số}
-        \label{fig:Predominant_black}
-    \end{figure}
-
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.6\textwidth]{figures/Jackson_support_rate-Black_proportional-Dataset_1.png}
         \caption{Mối liên hệ giữa tỷ lệ người da đen và tỷ lệ phiếu bầu cho ứng cử viên Jackson}
         \label{fig:Jackson_support_rate_Black_proportional_Dataset_1}
     \end{figure}
 
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.6\textwidth]{figures/Jackson_support_rate-Hispanic_proportional-Dataset_1.png}
         \caption{Mối liên hệ giữa tỷ lệ người gốc Tây Ban Nha và tỷ lệ phiếu bầu cho ứng cử viên Jackson}
         \label{fig:Jackson_support_rate_Hispanic_proportional_Dataset_1}
     \end{figure}
 
-    \begin{figure}[h!]
+    Ta sử dụng mô hình hồi quy tuyến tính để mô hình hóa mối liên hệ giữa tỷ lệ phiếu bầu cho ứng cử viên Jackson tại từng khu vực theo tỷ lệ người da đen hoặc người gốc Tây Ban Nha ở hai hình \ref{fig:Jackson_support_rate_Black_proportional_Dataset_1} và \ref{fig:Jackson_support_rate_Hispanic_proportional_Dataset_1}.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{figures/Predominant_black.png}
+        \caption{Những khu vực có người da đen chiếm đa số}
+        \label{fig:Predominant_black}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{figures/Predominant_hispanic.png}
+        \caption{Những khu vực có người gốc Tây Ban Nha chiếm đa số}
+        \label{fig:Predominant_black}
+    \end{figure}
+
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.6\textwidth]{figures/vote_df.png}
         \caption{Dataframe tập dữ liệu 2}
         \label{fig:vote_df}
     \end{figure}
 
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{figures/total_vote_df.png}
         \caption{Dataframe tổng hợp tỷ lệ phiếu bầu của từng ứng cử viên và tỷ lệ từng chủng tộc trong từng khu vực trong cuộc thăm dò ý kiến ở tập dữ liệu 2}
         \label{fig:total_vote_df}
     \end{figure}
 
-    \begin{figure}[h!]
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/Predominant_black_dataset_2.png}
+        \caption{Những khu vực có người da đen chiếm đa số ở tập dữ liệu 2}
+        \label{fig:Predominant_black_dataset_2}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/Predominant_hispanic_dataset_2.png}
+        \caption{Những khu vực có người gốc Tây Ban Nha chiếm đa số ở tập dữ liệu 2}
+        \label{fig:Predominant_hispanic_dataset_2}
+    \end{figure}
+
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{figures/Jackson_candidate_relationship_factor.png}
         \caption{Mối quan hệ giữa tỷ lệ ủng hộ ứng cử viên Jackson và các yếu tố thu nhập, tỷ lệ người da trắng, tỷ lệ người da đen, tỷ lệ người gốc Tây Ban Nha trong các khu vực ở tập dữ liệu 2}
         \label{fig:Jackson_candidate_relationship_factor}
     \end{figure}
 
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{figures/Dukakis_candidate_relationship_factor.png}
         \caption{Mối quan hệ giữa tỷ lệ ủng hộ ứng cử viên Dukakis và các yếu tố thu nhập, tỷ lệ người da trắng, tỷ lệ người da đen, tỷ lệ người gốc Tây Ban Nha trong các khu vực ở tập dữ liệu 2}
         \label{fig:Dukakis_candidate_relationship_factor}
     \end{figure}
 
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{figures/support_rate_df.png}
         \caption{Dataframe tính tỷ lệ ủng hộ các ứng cử viên Jackson và Dukakis trong từng nhóm chủng tộc trong các khu vực ở tập dữ liệu 2}
         \label{fig:Dukakis_candidate_relationship_factor}
     \end{figure}
 
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{figures/race_rate_and_candidate_support_rate.png}
         \caption{Tỷ lệ ủng hộ các ứng cử viên Jackson và Dukakis trong từng nhóm chủng tộc trong các khu vực ở tập dữ liệu 2}
         \label{fig:Dukakis_candidate_relationship_factor}
     \end{figure}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|}
+        \hline
+        & Jackson & Dukakis \\
+        \hline
+        Black & 0.5609 & 0.4391 \\
+        \hline
+        White & 0.3360 & 0.6640 \\
+        \hline
+        Hispanic & 0.4645 & 0.5355 \\
+        \hline
+        \end{tabular}
+        \caption{Tỷ lệ ủng hộ tổng quan của các ứng cử viên với từng nhóm chủng tộc}
+    \end{table}
     \end{enumerate}
 \end{loigiai}
 
