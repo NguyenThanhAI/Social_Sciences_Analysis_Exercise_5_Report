@@ -399,6 +399,23 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
         \label{fig:vote_df}
     \end{figure}
 
+    Tập dữ liệu thứ 2 gồm các trường khu vực (precinct), ứng cử viên (candidate), chủng tộc (race), mức thu nhập(income).
+    Mỗi bản ghi tương ứng với một cử tri tham gia cuộc thăm dò dư luận.
+    Để thuận tiện ta sẽ biến đổi dataframe này thành một dataframe khác để thuận tiện cho việc phân tích hơn.
+    Ta sẽ tạo một dataframe mới từ dataframe của tập dữ liệu thứ hai bằng cách ứng với mỗi khu vực ta tính mức thu nhập bình quân, tỷ lệ ủng hộ các ứng cử viên và tỷ lệ các nhóm chủng tộc.
+
+    Hình \ref{fig:total_vote_df} hiển thị dataframe mới được tạo ra từ tập dữ liệu thứ 2.
+    Ta nhận thấy trong các khu vực, tỷ lệ ủng hộ cho hai ứng cử viên La Rouche và ứng cử viên Gore rất thấp, gần như không ảnh hưởng đến kết quả cuối cùng.
+    Ta chỉ xét hai ứng cử viên Jackson và Dukakis có tỷ lệ phiếu bầu đáng kể tại mỗi khu vực.
+    Ngoài ra tỷ lệ người châu Á hay các nhóm chủng tộc thiểu số khác không đáng kể nên ta chỉ xét 3 nhóm chủng tộc lớn là người da trắng, người da đen và người gốc Tây Ban Nha
+    
+    Hình \ref{fig:Jackson_candidate_relationship_factor} và hình \ref{fig:Dukakis_candidate_relationship_factor} thể hiện tỷ lệ ủng hộ của các ứng cử viên theo các yếu tố như mức thu nhập bình quân tại khu vực, tỷ lệ người da trắng, tỷ lệ người da đen, tỷ lệ người gốc Tây Ban Nha trong khu vực đó.
+    Với ứng cử viên Jackson, với mức thu nhập bình quân đầu người tăng thì tỷ lệ ủng hộ ứng cử viên Jackson càng giảm.
+    Tại các khu vực có tỷ lệ người da đen hoặc người gốc Tây Ban Nha tăng, tỷ lệ ủng hộ ứng cứ viên Jackson tăng rõ rệt.
+    Tại các khu vực có tỷ lệ người da trắng tăng, tỷ lệ ủng hộ ứng cử viên Jackson giảm.
+    Với ứng cử viên Dukakis thì hoàn toàn trái ngược. Tại các khu vực có thu nhập bình quân đầu người cao, tỷ lệ ủng hộ ứng cử viên Dukakis cũng tăng.
+    Tại các nơi có tỷ lệ người da trắng cao, tỷ lệ ủng hộ ứng cử viên Dukakis cũng cao và với tỷ lệ người da đen hoặc người gốc Tây Ban Nha cao thì tỷ lệ ủng hộ ông Dukakis giảm.
+
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{figures/total_vote_df.png}
@@ -406,19 +423,6 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
         \label{fig:total_vote_df}
     \end{figure}
 
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{figures/Predominant_black_dataset_2.png}
-        \caption{Những khu vực có người da đen chiếm đa số ở tập dữ liệu 2}
-        \label{fig:Predominant_black_dataset_2}
-    \end{figure}
-
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\textwidth]{figures/Predominant_hispanic_dataset_2.png}
-        \caption{Những khu vực có người gốc Tây Ban Nha chiếm đa số ở tập dữ liệu 2}
-        \label{fig:Predominant_hispanic_dataset_2}
-    \end{figure}
 
     \begin{figure}[H]
         \centering
@@ -438,7 +442,7 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
         \centering
         \includegraphics[width=0.9\textwidth]{figures/support_rate_df.png}
         \caption{Dataframe tính tỷ lệ ủng hộ các ứng cử viên Jackson và Dukakis trong từng nhóm chủng tộc trong các khu vực ở tập dữ liệu 2}
-        \label{fig:Dukakis_candidate_relationship_factor}
+        \label{fig:support_rate_df}
     \end{figure}
 
     \begin{figure}[H]
@@ -446,6 +450,20 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
         \includegraphics[width=0.9\textwidth]{figures/race_rate_and_candidate_support_rate.png}
         \caption{Tỷ lệ ủng hộ các ứng cử viên Jackson và Dukakis trong từng nhóm chủng tộc trong các khu vực ở tập dữ liệu 2}
         \label{fig:Dukakis_candidate_relationship_factor}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/Predominant_black_dataset_2.png}
+        \caption{Những khu vực có người da đen chiếm đa số ở tập dữ liệu 2}
+        \label{fig:Predominant_black_dataset_2}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/Predominant_hispanic_dataset_2.png}
+        \caption{Những khu vực có người gốc Tây Ban Nha chiếm đa số ở tập dữ liệu 2}
+        \label{fig:Predominant_hispanic_dataset_2}
     \end{figure}
 
     \begin{table}[H]
@@ -463,6 +481,13 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
         \end{tabular}
         \caption{Tỷ lệ ủng hộ tổng quan của các ứng cử viên với từng nhóm chủng tộc}
     \end{table}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{figures/race_group_income_average.png}
+        \caption{Mức thu nhập bình quân theo chủng tộc}
+        \label{fig:race_group_income_average}
+    \end{figure}
     \end{enumerate}
 \end{loigiai}
 
