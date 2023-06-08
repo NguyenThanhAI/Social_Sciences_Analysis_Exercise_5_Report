@@ -349,6 +349,12 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
     \end{figure}
 
     Hình \ref{fig:primary_df} thể hiện dataframe của tập dữ liệu 1.
+    Tập dữ liệu thứ nhất gồm các trường: precinct là định danh khu vực,
+    Jackson là số phiếu bầu cho ứng cử viên Jackson trong khu vực tương ứng,
+    total cho biết tổng số phiếu bầu trong giai đoạn sơ bộ,
+    black là tỷ lệ người da đen ở trong khu vực.
+    hispanic là tỷ lệ người gốc Tây Ban Nha ở trong khu vực.
+    vap số người đang trong độ tuổi bầu cử ở trong khu vực.
 
     \begin{figure}[H]
         \centering
@@ -423,10 +429,10 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
         \label{fig:total_vote_df}
     \end{figure}
 
-    Như vậy theo giả thiết về thu nhập, những người cùng mức thu nhập có chung xu hướng chính trị.
+    Như vậy theo giả đỉnh về thu nhập, những người cùng mức thu nhập có chung xu hướng chính trị.
     Nếu ta xem tỷ lệ ủng hộ của một ứng cử viên tại một khu vực là một hàm của mức thu nhập thì ta nhận thấy những khu vực có mức thu nhập càng cao thì tỷ lệ ủng hộ ứng cử viên Jackson càng thấp và đối với ứng cử viên Dukakis thì ngược lại.
 
-    Để xem xét giả thiết về chủng tộc, ta sẽ tính tỷ lệ ủng hộ của các ứng viên trong từng nhóm chủng tộc bằng công thức:
+    Để xem xét giả đỉnh về chủng tộc, ta sẽ tính tỷ lệ ủng hộ của các ứng viên trong từng nhóm chủng tộc bằng công thức:
 
     \begin{equation*}
         \dfrac{\text{số cử tri thuộc chủng tộc X ủng hộ ứng cử viên A}}{\text{số cử tri thuộc chủng tộc X}}
@@ -495,6 +501,30 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
         \label{fig:Predominant_hispanic_dataset_2}
     \end{figure}
 
+    Theo \cite{nolan2001stat}, ta có thể sử dụng công thức tính mức độ ủng hộ của một nhóm chủng tộc cho ứng cử viên A so với ứng cử viên B theo công thức:
+
+    \begin{equation*}
+        \dfrac{\sum m_i x_i}{\sum (m_i + l_i)x_i}
+    \end{equation*}
+
+    với $m_i$ là số phiếu bầu cho ứng cử viên A trong khu vực $i$ và $x_i$ là tỷ lệ của chủng tộc đang xét ở khu vực $i$.
+    $l_i$ là số phiếu bầu cho ứng cử viên B.
+    Ta thực hiện công thức trên bằng đoạn code:
+
+\begin{python}
+def candidate_overall_support(df: pd.DataFrame):
+    candidates = ["Jackson", "Dukakis"]
+    races = ["Black", "White", "Hispanic"]
+    denom = df["Jackson"].to_numpy() + df["Dukakis"].to_numpy()
+    overall = {}
+    for race in races:
+        overall[race] = {}
+        for candidate in candidates:
+            overall[race][candidate] = np.sum(df[candidate].to_numpy() * df[race].to_numpy()) / np.sum(denom * df[race].to_numpy())
+            
+    return overall
+\end{python}
+
     \begin{table}[H]
         \centering
         \begin{tabular}{|c|c|c|}
@@ -509,7 +539,16 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
         \hline
         \end{tabular}
         \caption{Tỷ lệ ủng hộ tổng quan của các ứng cử viên với từng nhóm chủng tộc}
+        \label{tab:overall-support}
     \end{table}
+
+    Kết quả của mức độ ủng hộ chung của các chủng tộc cho hai ứng cử viên Jackson và Dukakis được trình bày ở bảng \ref{tab:overall-support}.
+    Người da đen có xu hướng ủng hộ ứng cử viên Jackson.
+    Người da trắng có xu hướng ủng hộ ứng cử viên Dukakis.
+    Người gốc Tây Ban Nha có xu hướng ủng hộ ứng cử viên Jackson hơn nhưng không có nhiều sự cách biệt giữa hai ứng cử viên.
+
+    Ta sẽ xét thêm mức thu nhập bình quân của từng nhóm chủng tộc.
+    Hình \ref{fig:race_group_income_average} thể hiện thu nhập bình quân của ba nhóm chủng tộc (da trắng, gốc Tây Ban Nha, da đen).
 
     \begin{figure}[H]
         \centering
@@ -517,6 +556,29 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
         \caption{Mức thu nhập bình quân theo chủng tộc}
         \label{fig:race_group_income_average}
     \end{figure}
+
+    Thu nhập bình quân của người da trắng là cao nhất và thấp nhất là người da đen.
+    Ở trên ta đã thấy những khu vực có mức thu nhập thấp thường đa số ủng hộ ứng cử viên Jackson và ngược lại những khu vực có mức thu nhập cao thường đa số ủng hộ ứng cử viên Dukakis.
+    Nên điều này trùng khớp với việc đa số người da đen ủng hộ ứng cử viên Jackson và đa số người da trắng ủng hộ ứng cử viên Dukakis.
+
+    \textbf{Kết luận:}
+
+    \begin{itemize}
+        \item Những khu vực có mức thu nhập thấp thường đa số ủng hộ ứng cử viên Jackson và ngược lại những khu vực có mức thu nhập cao thường đa số ủng hộ ứng cử viên Dukakis (củng cố giả định thu nhập).
+        \item Những khu vực có tỷ lệ người da đen cao thường có tỷ lệ ủng hộ ứng cử viên Jackson cao và những khu vực có tỷ lệ người da trắng cao thường đa số ủng hộ ứng cử viên Dukakis (củng cố giả định chủng tộc).
+        \item Nhóm những người thiểu số ở trong một khu vực có xu hướng bị ảnh hưởng bởi quan điểm chính trị của nhóm người chiếm đa số trong khu vực (củng cố giả định láng giếng).
+    \end{itemize}
+
+    Từ tập dữ liệu thứ nhất, bên nguyên đơn chưa có cơ sở để cáo buộc rằng dự luật C đã vi phạm Đạo luật về quyền bầu cử
+    Từ tập dữ liệu thứ hai (trong cuộc thăm dò dư luận), ta thấy rõ ràng nếu vẫn theo hình thức bầu cử cũ, tại những khu vực tỷ lệ người da đen cao thì những ứng cử viên mà người da đen đa số ủng hộ sẽ nhiều cơ hội thắng cử hơn hình thức bầu cử hai bước mới theo dự luật C.
+    Như vậy, bên nguyên đơn hoàn toàn có căn cứ để cáo buộc rằng dự luật C đã vi phạm Đạo luật về quyền bầu cử vì đã cấu thành từ các phân tích trên nhóm người da đen đã cấu thành ba điều mà tòa án tối cao đã yêu cầu bên nguyên đơn phải chứng minh:
+
+    \begin{enumerate}
+        \item Các nhóm thiểu số là đủ lớn và tập trung trong một khu vực địa lý tạo thành đa số trong một quận.
+        \item Các nhóm thiểu số có chung xu hướng chính trị.
+        \item Nhóm đa số bỏ phiếu đủ nhiều thành một nhóm khiến thường thắng các nhóm thiểu số khác.
+    \end{enumerate}
+
     \end{enumerate}
 \end{loigiai}
 
