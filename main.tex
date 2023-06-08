@@ -224,7 +224,7 @@
         Trong mục hai của Đạo luật về quyền bảo cử nghiêm cấm mọi hành vi từ chối quyền bầu cử vì chủng tộc.
         Điều này bao gồm mọi hành vi mà các thành viên của một chủng tộc có ít cơ hội hơn các thành viên của các nhóm chủng tốc khác để bầu đại diện mà họ lựa chọn.
 
-        Tòa án tối ưu đã yêu cầu bên nguyên đơn cần chứng minh ba điều để có được quyết định có lợi:
+        Tòa án tối cao đã yêu cầu bên nguyên đơn cần chứng minh ba điều để có được quyết định có lợi:
 
         \begin{enumerate}
             \item Các nhóm thiểu số là đủ lớn và tập trung trong một khu vực địa lý tạo thành đa số trong một quận.
@@ -365,6 +365,10 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
     \end{figure}
 
     Ta sử dụng mô hình hồi quy tuyến tính để mô hình hóa mối liên hệ giữa tỷ lệ phiếu bầu cho ứng cử viên Jackson tại từng khu vực theo tỷ lệ người da đen hoặc người gốc Tây Ban Nha ở hai hình \ref{fig:Jackson_support_rate_Black_proportional_Dataset_1} và \ref{fig:Jackson_support_rate_Hispanic_proportional_Dataset_1}.
+    Khi tỷ lệ người da đen hoặc tỷ lệ người gốc Tây Ban Nha tăng thì tỷ lệ phiếu bầu cho ứng cử viên Jackson cũng tăng nhưng tốc độ tăng là không nhiều.
+    Nếu ta giả sử ở một khu vực tỷ lệ người da đen là 100 \% thì tỷ lệ phiếu bầu dự đoán cho ứng cử viên Jackson là $0.035 + 0.31 \times 1=0.3135$.
+    Mặt khác, nếu ở một khu vực tỷ lệ người gốc Tây Ban Nha chiếm 100 \% thì tỷ lệ phiếu bầu dự đoán cho ứng cử viên Jackson là $0.039+0.134 \times 1=0.173$.
+    Như vậy hai tỷ lệ dự đoán trên vẫn quá thấp để ứng cử viên Jackson có thể thắng cử tại các khu vực này.
 
     \begin{figure}[H]
         \centering
@@ -377,8 +381,16 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
         \centering
         \includegraphics[width=0.6\textwidth]{figures/Predominant_hispanic.png}
         \caption{Những khu vực có người gốc Tây Ban Nha chiếm đa số}
-        \label{fig:Predominant_black}
+        \label{fig:Predominant_hispanic}
     \end{figure}
+
+    Hình \ref{fig:Predominant_black} và \ref{fig:Predominant_hispanic} lọc ra các khu vực mà người da đen hoặc người gốc Tây Ban Nha chiếm đa số.
+    Ở những khu vực có người da đen chiếm đa số chỉ có khu vực 11313 là có tỷ lệ ủng hộ ứng cử viên Jackson khoảng 38 \%, còn lại tất cả các khu vực khác đều có tỷ lệ ủng hộ ứng cử viên Jackson nhỏ hơn 30\%.
+    Ở các khu vực có người gốc Tây Ban Nha chiếm đa số thì tỷ lệ ủng hộ ứng cử viên Jackson rất thấp chỉ khoảng 6 - 7\%.
+
+    Như vậy ta thấy từ tập dữ liệu 1, bên nguyên đơn sẽ không thể nào chứng minh được sự cấu thành của điều kiện thứ 2 và điều kiện thứ 3 mà tòa án tối cao đưa ra.
+    Tỷ lệ trong nhóm người da đen hoặc người gốc Tây Ban Nha ủng hộ ứng cứ viên Jackson vẫn rất thấp.
+    Trong những khu vực người da đen chiếm đa số tỷ lệ người ủng hộ ứng cử viên Jackson không đủ cao hay trong những khu vực người gốc Tây Ban Nha ủng hộ ứng cử viên Jackson lại vô cùng thấp.
 
     \begin{figure}[H]
         \centering
