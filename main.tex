@@ -303,7 +303,7 @@
             \end{aligned}
         \end{equation*}
 
-        Và hệ số tương quan giữa hai đại lượng $x$ và $y$:
+        Và hệ số tương quan giữa hai đại lượng $X$ và $Y$:
 
         \begin{equation*}
             \sigma_{XY} = \dfrac{\dfrac{1}{N} \sum_{i=1}^N (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\dfrac{1}{N} \sum_{i=1}^N (x_i - \bar{x})^2 \dfrac{1}{N} \sum_{i=1}^N (y_i - \bar{y})^2}}
@@ -423,6 +423,23 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
         \label{fig:total_vote_df}
     \end{figure}
 
+    Như vậy theo giả thiết về thu nhập, những người cùng mức thu nhập có chung xu hướng chính trị.
+    Nếu ta xem tỷ lệ ủng hộ của một ứng cử viên tại một khu vực là một hàm của mức thu nhập thì ta nhận thấy những khu vực có mức thu nhập càng cao thì tỷ lệ ủng hộ ứng cử viên Jackson càng thấp và đối với ứng cử viên Dukakis thì ngược lại.
+
+    Để xem xét giả thiết về chủng tộc, ta sẽ tính tỷ lệ ủng hộ của các ứng viên trong từng nhóm chủng tộc bằng công thức:
+
+    \begin{equation*}
+        \dfrac{\text{số cử tri thuộc chủng tộc X ủng hộ ứng cử viên A}}{\text{số cử tri thuộc chủng tộc X}}
+    \end{equation*}
+
+    Ta xây dựng một dataframe mới, gồm các trường là tỷ lệ ủng hộ của từng nhóm chủng tộc cho từng ứng viên ở trong hình \ref{fig:support_rate_df}.
+    Hình \ref{fig:support_rate_df} thể hiện dataframe tỷ lệ ủng hộ của từng nhóm chủng tộc cho từng ứng cử viên với định danh "Tên ứng cử viên - Tên nhóm chủng tộc"
+    Hình \ref{fig:race_rate_and_candidate_support_rate} biểu diễn mối quan hệ giữa tỷ lệ của từng nhóm chủng tộc và tỷ lệ ủng hộ của ứng cử viên với nhóm chủng tộc đó.
+    Đối với nhóm người da đen, tỷ lệ người da đen ủng hộ ứng cử viên Jackson rất cao, ngược lại tỷ lệ ủng hộ ứng cử viên Dukakis nói chung rất thấp.
+    Đối với nhóm người da trắng, tỷ lệ người da trắng ủng hộ ứng cử viên Dukakis cao hơn nhiều so với tỷ lệ ủng hộ ứng cử viên Jackson.
+    Đối với nhóm người gốc Tây Ban Nha, tỷ lệ ủng hộ ứng cử viên Jackson có xu hướng cao hơn tỷ lệ ủng hộ ứng cử viên Dukakis.
+    Như vậy, giả định về chủng tộc đúng với người da đen và người da trắng.
+    Khi mà người da đen đa số ủng hộ ứng cử viên Jackson hơn và ngược lại người da trắng đa số ủng hộ ứng cử viên Dukakis.
 
     \begin{figure}[H]
         \centering
@@ -431,12 +448,24 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
         \label{fig:Jackson_candidate_relationship_factor}
     \end{figure}
 
+    Một điều khá đáng chú ý nữa từ hình \ref{fig:race_rate_and_candidate_support_rate}, ta nhận thấy tỷ lệ ủng hộ của từng nhóm chủng tộc cho các ứng cử viên trong một khu vực có phụ thuộc vào tỷ lệ của chủng tộc đó trong khu vực đó.
+    Cụ thể, ta biết nói chung tỷ lệ ủng hộ ứng cử viên Jackson trong cộng đồng người da đen nói chung là cao nhưng ở một số khu vực có tỷ lệ người da đen thấp thì tỷ lệ ủng hộ ứng cử viên Jackson của người da đen tại khu vực này cũng thấp.
+    Điều tương tự cũng xảy ra khi mà tại những khu vực có tỷ lệ người da trắng thấp thì tỷ lệ người da trắng ủng hộ ứng cử viên Jackson cũng cao dù mặt bằng chung tỷ lệ người da trắng ủng hộ ứng cử viên Jackson thấp.
+    Điều này ủng hộ cho giả định láng giềng khi những người trong cùng khu vực có xu hướng chọn cùng ứng viên không quan trọng chủng tộc.
+    Có thể được giải thích bằng cách những người thuộc nhóm thiểu số ở một khu vực cũng phần nào bị ảnh hưởng xu hướng chính trị bởi nhóm đa số tại khu vực đó.
+    Ví dụ, những người da đen là nhóm thiểu số trong một khu vực rất có thể bị ảnh hưởng quan điểm chính trị bởi những người đa trắng là đa số khiến cho tỷ lệ những người da đen tại khu vực này ủng hộ ứng cử viên mà đa số những người da trắng ủng hộ cũng cao và ngược lại.
+
+    Hình \ref{fig:Predominant_black_dataset_2} và hình \ref{fig:Predominant_hispanic_dataset_2} cho biết thông tin tỷ lệ ủng hộ của các chủng tộc đối với các ứng viên mà người da đen (hình \ref{fig:Predominant_black_dataset_2}) chiếm đa số và người gốc Tây Ban Nha chiếm (hình \ref{fig:Predominant_hispanic_dataset_2}) đa số.
+    Tại những khu vực người da đen chiếm đa số, tỷ lệ ủng hộ của người da đen đối với ứng cử viên Jackson đều rất cao (> 90\%).
+    Tại những khu vực người gốc Tây Ban Nha chiếm đa số, tỷ lệ ủng hộ của người gốc Tây Ban Nha với hai ứng cử viên Jackson và Dukakis là như nhau (50 \% - 50 \%)
+
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{figures/Dukakis_candidate_relationship_factor.png}
         \caption{Mối quan hệ giữa tỷ lệ ủng hộ ứng cử viên Dukakis và các yếu tố thu nhập, tỷ lệ người da trắng, tỷ lệ người da đen, tỷ lệ người gốc Tây Ban Nha trong các khu vực ở tập dữ liệu 2}
         \label{fig:Dukakis_candidate_relationship_factor}
     \end{figure}
+
 
     \begin{figure}[H]
         \centering
@@ -449,7 +478,7 @@ def linear_correlation(x: np.ndarray, y: np.ndarray, w: np.ndarray):
         \centering
         \includegraphics[width=0.9\textwidth]{figures/race_rate_and_candidate_support_rate.png}
         \caption{Tỷ lệ ủng hộ các ứng cử viên Jackson và Dukakis trong từng nhóm chủng tộc trong các khu vực ở tập dữ liệu 2}
-        \label{fig:Dukakis_candidate_relationship_factor}
+        \label{fig:race_rate_and_candidate_support_rate}
     \end{figure}
 
     \begin{figure}[H]
