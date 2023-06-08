@@ -184,6 +184,7 @@
 \begin{loigiai}
     \begin{enumerate}
         \item Tóm tắt nghiên cứu "Voting behavior":
+        
         \textbf{Giới thiệu:}
         Ở Stockton, California cuộc bầu 4 tháng 11 năm 1986, các cử tri biểu quyết dự luật C bãi bỏ hệ thống bầu cử cũ của quận cho hội đồng thành phố và thị trưởng, thay thế bằng hệ thống bầu cử hai giai đoạn bao gồm bầu cử sơ bộ ở các quận tiếp theo đó là cuộc bầu cử toàn thành phố.
         Sau hơn hai năm tranh luận, sáu cư dân của Stockton đã đệ đơn kiện thành phố.
@@ -306,7 +307,7 @@
         Và hệ số tương quan giữa hai đại lượng $X$ và $Y$:
 
         \begin{equation*}
-            \sigma_{XY} = \dfrac{\sum_{i=1}^N w_i (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^N w_i (x_i - \bar{x})^2 \sum_{i=1}^N w_i (y_i - \bar{y})^2}}
+            \sigma_{XY} = \dfrac{\sum_{i=1}^N w_i (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^N w_i (x_i - \bar{x})^2 \sum_{j=1}^N w_j (y_j - \bar{y})^2}}
         \end{equation*}
 
         Ta tính các hệ số của mô hình hồi quy tuyến tính và hệ số tương quan bằng đoạn code sau:
